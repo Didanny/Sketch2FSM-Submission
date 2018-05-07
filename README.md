@@ -1,7 +1,7 @@
 # Sketch2FSM
 To start the program, click on `Sketch2FSM_UI.exe` in the directory.
 
-A GUI should start up. Now drag and drop your sketch to the blue rectangle at the top of the window and click the `Start` button.
+A GUI should start up. Now drag and drop your sketch to the blue rectangle at the top of the window and click the `Start` button. Also the assumption here is that the components in the image are separated by a few pixels.
 
 The program is now analyzing the sketch and identifying the components, this may take a minute.
 
