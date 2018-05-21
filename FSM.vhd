@@ -6,12 +6,12 @@ entity FSM is
 Port(	clk : in std_logic;
 	reset : in std_logic;
 	input : in std_logic;
-	state_out : std_logic_vector (2 downto 0));
+	state_out : std_logic_vector (1 downto 0));
 end FSM;
 
 architecture Behavioral of FSM is
 
-type state is (sSKATE2,sSTATE1,sUNKNOWN,sUNKNOWN,sUNKNOWN,sUNKNOWN,sUNKNOWN);
+type state is (sSTATE2,sSTATE1,sSTATE3);
 signal current_state, next_state : state;
 
 begin
@@ -29,136 +29,45 @@ begin
 
 case current_state is
 when sSTATE1 =>
-state_out <= "001"
-if ( input = '' )
+state_out <= "01"
+if ( input = '1' )
 then next_state <= sSTATE1;
 else next_state <= sSTATE1;
 end if;
 
-when sSTATE1 =>
-state_out <= "001"
-if ( input = '' )
-then next_state <= sSKATE2;
-else next_state <= sSTATE1;
+when sSTATE2 =>
+state_out <= "00"
+if ( input = '0' )
+then next_state <= sSTATE1;
+else next_state <= sSTATE2;
+end if;
+
+when sSTATE2 =>
+state_out <= "00"
+if ( input = '1' )
+then next_state <= sSTATE2;
+else next_state <= sSTATE2;
 end if;
 
 when sSTATE1 =>
-state_out <= "001"
-if ( input = '' )
-then next_state <= sSKATE2;
+state_out <= "01"
+if ( input = '0' )
+then next_state <= sSTATE3;
 else next_state <= sSTATE1;
 end if;
 
-when sSKATE2 =>
-state_out <= "000"
-if ( input = 'unknown' )
-then next_state <= sSKATE2;
-else next_state <= sSKATE2;
+when sSTATE3 =>
+state_out <= "10"
+if ( input = '1' )
+then next_state <= sSTATE2;
+else next_state <= sSTATE3;
 end if;
 
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
-end if;
-
-when sUNKNOWN =>
-state_out <= "010"
-if ( input = '' )
-then next_state <= sUNKNOWN;
-else next_state <= sUNKNOWN;
+when sSTATE3 =>
+state_out <= "10"
+if ( input = '0' )
+then next_state <= sSTATE3;
+else next_state <= sSTATE3;
 end if;
 
 end case;
